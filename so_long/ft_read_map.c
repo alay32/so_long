@@ -6,34 +6,13 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 01:14:19 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/03/22 02:07:09 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/03/30 02:18:07 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "so_long.h"
 
-char	*ft_read_map(int argc, char **argv)
-{
-	int		fd;
-	char	*line;
-	char	*ptr;
-
-	(void)argc;
-	if (!argv[1])
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	ptr = (char *)malloc(sizeof(char));
-	ptr[0] = '\0';
-	line = get_next_line(fd);
-	while (line)
-	{
-		ptr = ft_strjoin(ptr, line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (ptr);
-}
 
 static char	*ft_strchr(const char *s, char *c)
 {

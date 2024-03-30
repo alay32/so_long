@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "so_long.h"
 
 static int	find_ber(char *str, char *to_find)
 {
@@ -34,14 +34,14 @@ int	check_ber(char *argument)
 
 int	ft_check_length(char **ptr)
 {
-	size_t length;
+	int length;
 	int	i;
 
-	length = ft_strlen(ptr[0]);
+	length = (int)ft_strlen(ptr[0]);
 	i = 1;
 	while (ptr[i])
 	{
-		if(ft_strlen(ptr[i]) != length)
+		if((int)ft_strlen(ptr[i]) != length)
 		{
 			return (1);
 		}
@@ -50,32 +50,35 @@ int	ft_check_length(char **ptr)
 	return (0);
 }
 
-// int	ft_check_walls(char **map)
-// {
-// 	int i;
-// 	int j;
-// 	int height;
-// 	int weight;
+int	ft_check_walls(char **map)
+{
+	int i;
+	int j;
+	int height;
+	int width;
 
-// 	i = 0;
-// 	j = 0;
-// 	height = 0;
-// 	weight = 0;
-// 	while(map[i++][j++])
-// 	{
-// 		if(map[i][j] == '\n')
-// 			height++;
-// 		if(map[i][j] != '\0')
-// 			weight++;
-// 	}
-// 	while(map[i++][j++])
-// 	{
-// 		if(map[0][j] != '1' || map[height - 1][j] != '1')
-// 			return (0);
-// 		if(map[i][0] != '1' || map[i][weight - 1] != '1')
-// 			return (0);
-// 	}
-// 	return (1);
-// }
+	i = 0;
+	j = 0;
+	height = 0;
+	width = 0;
 
-
+    while (map[height])
+        height++;
+    width = (int)ft_strlen(map[0]);
+    while(map[i])
+    {    
+        if(map[0][j] != '1' || map[height - 1][j] != '1')
+		    {
+                printf("map mafihaxi hyot\n");
+                exit(1);
+            }
+		if(map[i][0] != '1' || map[i][width - 1] != '1')
+		    {
+                printf("map mafihaxi jwanb");
+                exit(1);
+            }
+        i++;
+        j++;
+    }
+    return (1);
+}

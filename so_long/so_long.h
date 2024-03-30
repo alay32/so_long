@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 00:58:13 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/03/22 02:05:00 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/03/30 02:12:33 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define SO_LONG_H
 /// compilation with flags (-L -l -I)
 #include "./includes/get_next_line/get_next_line.h"
-///
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
