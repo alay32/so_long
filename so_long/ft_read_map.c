@@ -29,6 +29,7 @@ char	*ft_read_map(int argc, char **argv)
 	while (line)
 	{
 		ptr = ft_strjoin(ptr, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	return (ptr);
