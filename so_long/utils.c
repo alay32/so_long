@@ -6,17 +6,17 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 01:32:32 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/03/22 02:10:48 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/01 03:02:32 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_strdup(const char *s1)
+char *ft_strdup(const char *s1)
 {
-	char	*str;
-	size_t	len;
-	int		i;
+	char *str;
+	size_t len;
+	int i;
 
 	i = 0;
 	len = ft_strlen(s1);
@@ -32,7 +32,7 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char *substr;
 	unsigned int s_len;

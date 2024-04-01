@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 00:58:13 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/03/30 02:12:33 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/01 01:43:09 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ typedef struct s_data
     int height;
 } t_data;
 
-char    *ft_read_map(int argc, char **argv);
-char	**ft_split(char *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int	    check_ber(char *argument);
-int	    ft_check_length(char **ptr);
-int	    ft_check_walls(char **map);
+char *ft_read_map(int argc, char **argv);
+char **ft_split(char *s, char c);
+char *ft_substr(char const *s, unsigned int start, size_t len);
+char *get_map_lines(char **av, t_data *data);
+int check_ber(char *argument);
+int ft_check_length(char **ptr);
+int ft_check_walls(char **map);
+void print_error(char *str);
 
 #endif

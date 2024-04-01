@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
-
 
 static char	*ft_strchr(const char *s, char *c)
 {
@@ -65,7 +63,7 @@ static char	**ft_free(char **arr)
 	return (NULL);
 }
 
-char	**ft_split(char  *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**lst;
 	size_t	word_len;

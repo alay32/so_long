@@ -1,6 +1,6 @@
 NAME := so_long.a
 CC := cc 
-CFLAGS := -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 AR := ar rc
 RM := rm -rf
 # CFILES := ft_read_map.c get_next_line_utils.c get_next_line.c so_long.c ft_check_map.c utils.c 
