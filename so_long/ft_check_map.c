@@ -51,30 +51,28 @@ int ft_check_length(char **ptr)
 	return (1);
 }
 
-int ft_check_walls(char **map)
+int ft_check_walls(t_data *data)
 {
 	int i;
 	int j;
-	int height;
-	int width;
 
 	i = 0;
-	j = 0;
-	height = 0;
-	width = 0;
-
-	while (map[height])
-		height++;
-	printf("height ==> %d\n", height);
-	width = (int)ft_strlen(map[0]);
-	printf("width ==> %d\n", width);
-	while (map[i][j])
+	while (data->map[data->height])
+		data->height++;
+	printf("height ==> %d\n", data->height);
+	data->width = (int)ft_strlen(data->map[0]);
+	printf("width ==> %d\n", data->width);
+	while (data->map[i])
 	{
-		if (map[0][j] != '1' || map[height - 1][j] != '1')
-			print_error("Abscence de 1 horizontal\n");
-		if (map[i][0] != '1' || map[i][width - 1] != '1')
-			print_error("Abscence de 1 verticale\n");
-		j++;
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][0] != '1' || data->map[i][data->width - 1] != '1')
+				print_error("Abscence de 1 verticale\n");
+			if (data->map[0][j] != '1' || data->map[data->height - 1][j] != '1')
+				print_error("Abscence de 1 horizontal\n");
+			j++;
+		}
 		i++;
 	}
 	printf("i ==> %d\n", i);

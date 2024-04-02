@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 01:27:32 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/01 03:17:59 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/02 06:00:38 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,15 @@ char *get_map_lines(char **av, t_data *data)
 	map = ft_split(lines, '\n');
 	free(lines);
 	data->map = map;
+	int i = 0;
+	while (data->map[i])
+		i++;
+	printf("HEIGHT => %d\n", i);
+	printf("WIDTH => %d\n", (int)ft_strlen(data->map[0]));
+
 	return (*data->map);
 }
+
 void print_error(char *str)
 {
 	int i;
@@ -121,6 +128,73 @@ void print_error(char *str)
 	}
 	exit(1);
 }
+
+int exit_game(t_data *data)
+{
+	(void)data;
+	exit(1);
+}
+
+int handle_keys(int keycode, t_data *data)
+{
+	if (keycode == 13)
+	{
+		data->i = -1;
+		data->j = 0;
+	}
+	// khesni necriyiha change_position_in_map(data);
+	// check wach kmlti lapples flmap kamlinn ila kmtihom had lvariable void *exit = mlx_xp..(exit_open)
+	// call a function that changes tswira dlplayer 3la 7sab i and j
+	draw_map(data);
+	return (0);
+}
+
+void load_images(t_data *data)
+{
+	int width;
+	int height;
+
+	data->ground = mlx_xpm_file_to_image(data->mlx, "./textures/ground.xpm", &width, &height);
+	data->wall = mlx_xpm_file_to_image(data->mlx, "./textures/wall.xpm", &width, &height);
+}
+
+void draw_map(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			mlx_put_image_to_window(data->mlx, data->win, data->ground, j * 30, i * 30);
+			if (data->map[i][j] == '1')
+				mlx_put_image_to_window(data->mlx, data->win, data->wall, j * 30, i * 30);
+			else if (data->map[i][j] == 'C')
+				mlx_put_image_to_window(data->mlx, data->win, data->apple, j * 30, i * 30);
+			else if (data->map[i][j] == 'P')
+				mlx_put_image_to_window(data->mlx, data->win, data->player, j * 30, i * 30);
+			else if (data->map[i][j] == 'E')
+				mlx_put_image_to_window(data->mlx, data->win, data->exit, j * 30, i * 30);
+			j++;
+		}
+		i++;
+	}
+}
+
+void initialize_game(t_data *data)
+{
+	data->mlx = mlx_init();
+	0 data->win = mlx_new_window(data->mlx, data->width * 30, data->height * 30, "so_long");
+	mlx_hook(data->win, 2, 1L << 1, handle_keys, &data);
+	mlx_hook(data->win, 17, 0, exit_game, &data);
+	load_images(data);
+	draw_map(data);
+	mlx_loop(data->mlx);
+}
+
 int main(int argc, char **av)
 {
 	t_data data;
@@ -131,9 +205,10 @@ int main(int argc, char **av)
 	check_ber(av[1]);
 	get_map_lines(av, &data);
 	ft_check_length(data.map);
-	ft_check_walls(data.map);
+	ft_check_walls(&data);
 	ft_check_collectibles(data.map);
 	ft_check_elements(data.map);
+	initialize_game(&data);
 	i = 0;
 	while (data.map[i])
 		free(data.map[i++]);

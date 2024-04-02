@@ -1,0 +1,2 @@
+➜  so_long git:(master) ✗ ./so_long maps/.ber
+[1]    13984 segmentation fault  ./so_long maps/.ber
