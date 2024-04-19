@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 01:27:32 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/02 06:00:38 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/19 03:31:42 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int calc_num_of_element(char **map, char element)
 	return (count);
 }
 
-int ft_check_collectibles(char **map)
+void ft_check_collectibles(char **map)
 {
 	int p_counter;
 	int e_counter;
@@ -79,19 +79,18 @@ int ft_check_collectibles(char **map)
 		print_error("There is more than exit\n");
 	if (c_counter < 1)
 		print_error("There is no COIN you should have at least one\n");
-	return (0);
 }
 
-char *get_map_lines(char **av, t_data *data)
+void get_map_lines(char *av, t_data *data)
 {
 	char *lines;
 	char *line;
 	int fd;
-	char **map;
+	// char **map;
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		print_error("file not open!\n");
 	lines = malloc(sizeof(char));
 	lines[0] = '\0';
 	line = get_next_line(fd);
@@ -104,16 +103,13 @@ char *get_map_lines(char **av, t_data *data)
 		line = get_next_line(fd);
 	}
 	printf("map dyali :  \n%s\n", lines);
-	map = ft_split(lines, '\n');
+	data->map = ft_split(lines, '\n');
 	free(lines);
-	data->map = map;
-	int i = 0;
-	while (data->map[i])
-		i++;
-	printf("HEIGHT => %d\n", i);
-	printf("WIDTH => %d\n", (int)ft_strlen(data->map[0]));
-
-	return (*data->map);
+	// data->map = map;
+	// int i = 0;
+	// while (data->map[i])
+	// 	i++;
+	// return (*data->map);
 }
 
 void print_error(char *str)
@@ -121,6 +117,7 @@ void print_error(char *str)
 	int i;
 
 	i = 0;
+	write(2, "Error\n", 6);
 	while (str[i])
 	{
 		write(2, &str[i], 1);
@@ -131,31 +128,70 @@ void print_error(char *str)
 
 int exit_game(t_data *data)
 {
-	(void)data;
-	exit(1);
+	free_map(data->map);
+	mlx_destroy_window(data->mlx, data->win);
+	write(1 ,"exit by user\n",13);
+	exit(EXIT_SUCCESS);
 }
 
+//////moves////////
+
+///////////////////
 int handle_keys(int keycode, t_data *data)
 {
-	if (keycode == 13)
+	if (keycode == 53)
 	{
-		data->i = -1;
-		data->j = 0;
+		free_map(data->map);
+		mlx_destroy_window(data->mlx, data->win);
+		exit(EXIT_SUCCESS);
+	}
+
+	if (keycode == UP)
+	{
+		move_up(data);
+	}	
+	if (keycode == DOWN)
+	{
+		move_down(data);
+	}	
+	if (keycode == RIGHT)
+	{
+		move_right(data);
+	}	
+	if (keycode == LEFT)
+	{
+		move_left(data);
 	}
 	// khesni necriyiha change_position_in_map(data);
 	// check wach kmlti lapples flmap kamlinn ila kmtihom had lvariable void *exit = mlx_xp..(exit_open)
 	// call a function that changes tswira dlplayer 3la 7sab i and j
-	draw_map(data);
+	// draw_map(data);
 	return (0);
 }
-
+// void	change_position_in_map(t_data *data)
+// {
+	
+// }
 void load_images(t_data *data)
 {
 	int width;
 	int height;
 
 	data->ground = mlx_xpm_file_to_image(data->mlx, "./textures/ground.xpm", &width, &height);
+	if (!data->ground)
+		return ;
 	data->wall = mlx_xpm_file_to_image(data->mlx, "./textures/wall.xpm", &width, &height);
+	if (!data->wall)
+		return ;
+	data->apple = mlx_xpm_file_to_image(data->mlx, "./textures/apple.xpm", &width, &height);
+	if (!data->apple)
+		return ;
+	data->player = mlx_xpm_file_to_image(data->mlx, "./textures/left1.xpm", &width, &height);
+	if (!data->player)
+		return ;
+	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/exit_close.xpm", &width, &height);
+	if (!data->exit)
+		return ;
 }
 
 void draw_map(t_data *data)
@@ -187,31 +223,36 @@ void draw_map(t_data *data)
 void initialize_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	0 data->win = mlx_new_window(data->mlx, data->width * 30, data->height * 30, "so_long");
-	mlx_hook(data->win, 2, 1L << 1, handle_keys, &data);
-	mlx_hook(data->win, 17, 0, exit_game, &data);
+	if (!data->mlx)
+		return ;
+	data->win = mlx_new_window(data->mlx, data->width * 30, data->height * 30, "so_long");
+	if (!data->win)
+		return;
+	
 	load_images(data);
 	draw_map(data);
+
+	mlx_hook(data->win, 2, 0, handle_keys, data);
+	mlx_hook(data->win, 17, 0, exit_game, data);
 	mlx_loop(data->mlx);
 }
 
 int main(int argc, char **av)
 {
 	t_data data;
-	int i;
 
 	if (argc != 2)
 		print_error("There is no map\n");
 	check_ber(av[1]);
-	get_map_lines(av, &data);
+	get_map_lines(av[1], &data);
 	ft_check_length(data.map);
 	ft_check_walls(&data);
 	ft_check_collectibles(data.map);
 	ft_check_elements(data.map);
+	check_path(&data);
+	
 	initialize_game(&data);
-	i = 0;
-	while (data.map[i])
-		free(data.map[i++]);
-	free(data.map);
+
+	free_map(data.map);
 	return (0);
 }

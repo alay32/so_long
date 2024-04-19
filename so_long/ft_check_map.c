@@ -16,24 +16,26 @@ static int find_ber(char *str, char *to_find)
 	return (0);
 }
 
-int check_ber(char *argument)
+void  check_ber(char *argument)
 {
+	if (ft_strlen(argument) < 5)
+		print_error("The map must be ending by .ber\n");
 	while (*argument)
 	{
 		if (*argument == '.')
 		{
 			if (find_ber(argument, ".ber"))
 			{
-				return (0);
-			}
+				if (argument[ft_strlen(argument) - 5] != '/')
+					return ;
+			}		
 		}
 		argument++;
 	}
 	print_error("The map must be ending by .ber\n");
-	return (1);
 }
 
-int ft_check_length(char **ptr)
+void ft_check_length(char **ptr)
 {
 	int length;
 	int i;
@@ -48,14 +50,14 @@ int ft_check_length(char **ptr)
 		}
 		i++;
 	}
-	return (1);
 }
 
-int ft_check_walls(t_data *data)
+void  ft_check_walls(t_data *data)
 {
 	int i;
 	int j;
 
+	data->height = 0;
 	i = 0;
 	while (data->map[data->height])
 		data->height++;
@@ -75,7 +77,4 @@ int ft_check_walls(t_data *data)
 		}
 		i++;
 	}
-	printf("i ==> %d\n", i);
-	printf("j ==> %d\n", j);
-	return (1);
 }
