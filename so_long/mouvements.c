@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:27:41 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/20 12:08:03 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:39:24 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	change_player_position(t_data *data)
 		+ data->dx] == 'E')
 		exit_game(data);
 	else if (data->c_number != 0 && data->map[data->p_y + data->dy][data->p_x
-			+ data->dx] == 'E')
+		+ data->dx] == 'E')
 		return ;
 	data->map[data->p_y][data->p_x] = '0';
 	data->map[data->p_y + data->dy][data->p_x + data->dx] = 'P';
@@ -67,37 +67,6 @@ int	handle_keys(int keycode, t_data *data)
 	change_player_position(data);
 	draw_map(data);
 	return (0);
-}
-
-void	draw_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (data->map[i])
-	{
-		j = 0;
-		while (data->map[i][j])
-		{
-			mlx_put_image_to_window(data->mlx, data->win, data->ground, j * 30,
-					i * 30);
-			if (data->map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, data->wall, j
-						* 30, i * 30);
-			else if (data->map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->apple, j
-						* 30, i * 30);
-			else if (data->map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx, data->win, data->player, j
-						* 30, i * 30);
-			else if (data->map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win, data->exit, j
-						* 30, i * 30);
-			j++;
-		}
-		i++;
-	}
 }
 
 void	load_images(t_data *data)
