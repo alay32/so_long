@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 01:08:07 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/03/22 01:17:55 by ael-mejd         ###   ########.fr       */
+/*   Created: 2023/10/31 15:57:27 by ael-mejd          #+#    #+#             */
+/*   Updated: 2024/04/20 11:25:27 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-#include <stdio.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *line, char *buffer);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n >= 0 && n <= 9)
+	{
+		ft_putchar_fd(n + '0', fd);
+		return ;
+	}
+	ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);
+}

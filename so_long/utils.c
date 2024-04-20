@@ -12,11 +12,11 @@
 
 #include "so_long.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char *str;
-	size_t len;
-	int i;
+	char	*str;
+	size_t	len;
+	int		i;
 
 	i = 0;
 	len = ft_strlen(s1);
@@ -32,10 +32,10 @@ char *ft_strdup(const char *s1)
 	return (str);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *substr;
-	unsigned int s_len;
+	char			*substr;
+	unsigned int	s_len;
 
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
@@ -51,9 +51,9 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])

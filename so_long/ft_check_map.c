@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/20 11:34:09 by ael-mejd          #+#    #+#             */
+/*   Updated: 2024/04/20 12:00:32 by ael-mejd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static int find_ber(char *str, char *to_find)
+static int	find_ber(char *str, char *to_find)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (to_find[i])
@@ -16,7 +28,7 @@ static int find_ber(char *str, char *to_find)
 	return (0);
 }
 
-void  check_ber(char *argument)
+void	check_ber(char *argument)
 {
 	if (ft_strlen(argument) < 5)
 		print_error("The map must be ending by .ber\n");
@@ -28,17 +40,17 @@ void  check_ber(char *argument)
 			{
 				if (argument[ft_strlen(argument) - 5] != '/')
 					return ;
-			}		
+			}
 		}
 		argument++;
 	}
 	print_error("The map must be ending by .ber\n");
 }
 
-void ft_check_length(char **ptr)
+void	ft_check_length(char **ptr)
 {
-	int length;
-	int i;
+	int	length;
+	int	i;
 
 	length = (int)ft_strlen(ptr[0]);
 	i = 1;
@@ -52,18 +64,16 @@ void ft_check_length(char **ptr)
 	}
 }
 
-void  ft_check_walls(t_data *data)
+void	ft_check_walls(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	data->height = 0;
 	i = 0;
 	while (data->map[data->height])
 		data->height++;
-	printf("height ==> %d\n", data->height);
 	data->width = (int)ft_strlen(data->map[0]);
-	printf("width ==> %d\n", data->width);
 	while (data->map[i])
 	{
 		j = 0;

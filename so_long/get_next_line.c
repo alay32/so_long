@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/20 11:35:56 by ael-mejd          #+#    #+#             */
+/*   Updated: 2024/04/20 11:36:26 by ael-mejd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -80,9 +91,9 @@ char	*ft_get_line(int fd, char *line, char *buffer, char **rest)
 
 char	*get_next_line(int fd)
 {
-	char *buffer;
-	static char *rest;
-	char *line;
+	char		*buffer;
+	static char	*rest;
+	char		*line;
 
 	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0)
 		return (NULL);
