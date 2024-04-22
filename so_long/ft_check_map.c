@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:34:09 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/20 12:00:32 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:20:07 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,19 @@ void	check_ber(char *argument)
 	print_error("The map must be ending by .ber\n");
 }
 
-void	ft_check_length(char **ptr)
+void	ft_check_length(t_data *data)
 {
-	int	length;
-	int	i;
-
-	length = (int)ft_strlen(ptr[0]);
-	i = 1;
-	while (ptr[i])
+	data->width = ft_strlen(data->map[0]);
+	if (data->width == 0)
+		print_error("Problem\n");
+	while (data->map[data->height])
 	{
-		if ((int)ft_strlen(ptr[i]) != length)
+		if ((int)ft_strlen(data->map[data->height]) != data->width)
 		{
 			print_error("The map must be rectungulaire\n");
+			free_map(data->map);
 		}
-		i++;
+		data->height++;
 	}
 }
 

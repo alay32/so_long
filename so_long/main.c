@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:44:13 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/20 12:05:18 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:28:18 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	get_map_lines(char *av, t_data *data)
 		lines = ft_strjoin(lines, line);
 		free(line);
 		line = get_next_line(fd);
+	}
+	if (lines[0] == '\0')
+	{
+		free(lines);
+		print_error("empty map\n");
 	}
 	data->map = ft_split(lines, '\n');
 	free(lines);
@@ -61,7 +66,7 @@ int	main(int argc, char **av)
 		print_error("There is no map\n");
 	check_ber(av[1]);
 	get_map_lines(av[1], &data);
-	ft_check_length(data.map);
+	ft_check_length(&data);
 	ft_check_walls(&data);
 	ft_check_collectibles(data.map);
 	ft_check_elements(data.map);

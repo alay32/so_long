@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 00:58:13 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/20 11:57:32 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/22 03:08:15 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char		**ft_split(char *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		get_map_lines(char *av, t_data *data);
 void		check_ber(char *argument);
-void		ft_check_length(char **ptr);
+void		ft_check_length(t_data *data);
 void		ft_check_walls(t_data *data);
 void		print_error(char *str);
 void		draw_map(t_data *data);

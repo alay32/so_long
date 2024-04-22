@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:27:41 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/20 13:39:24 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/04/22 23:48:23 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void	load_images(t_data *data)
 			&width, &height);
 	if (!data->apple)
 		return ;
-	data->player = mlx_xpm_file_to_image(data->mlx, "./textures/left1.xpm",
-			&width, &height);
+	data->player = mlx_xpm_file_to_image(data->mlx,
+			"./textures/ghost_down1.xpm", &width, &height);
 	if (!data->player)
 		return ;
-	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/exit_close.xpm",
+	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/portal.xpm",
 			&width, &height);
 	if (!data->exit)
 		return ;

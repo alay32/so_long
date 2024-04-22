@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-static char *ft_strchr(const char *s, char *c)
+static char	*ft_strchr(const char *s, char *c)
 {
-	char *str;
+	char	*str;
 
 	str = (char *)s;
 	while (*str != *c)
@@ -28,10 +28,10 @@ static char *ft_strchr(const char *s, char *c)
 	return (str);
 }
 
-static size_t ft_countword(char const *s, char c)
+static size_t	ft_countword(char const *s, char c)
 {
-	size_t count;
-	int i;
+	size_t	count;
+	int		i;
 
 	i = 0;
 	if (!s[i])
@@ -49,9 +49,9 @@ static size_t ft_countword(char const *s, char c)
 	return (count);
 }
 
-static char **ft_free(char **arr)
+static char	**ft_free(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr && arr[i])
@@ -63,11 +63,11 @@ static char **ft_free(char **arr)
 	return (NULL);
 }
 
-char **ft_split(char *s, char c)
+char	**ft_split(char *s, char c)
 {
-	char **lst;
-	size_t word_len;
-	int i;
+	char	**lst;
+	size_t	word_len;
+	int		i;
 
 	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
 	if (!s || !lst)
