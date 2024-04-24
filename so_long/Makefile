@@ -1,6 +1,6 @@
 NAME := so_long
 CC := cc 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror #-fsanitize=address -g
 AR := ar rc
 RM := rm -rf
 CFILES = get_next_line.c get_next_line_utils.c so_long.c utils.c ft_split.c \
