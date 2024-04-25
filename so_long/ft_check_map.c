@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-static int find_ber(char *str, char *to_find)
+static int	find_ber(char *str, char *to_find)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (to_find[i])
@@ -28,9 +28,10 @@ static int find_ber(char *str, char *to_find)
 	return (0);
 }
 
-void check_ber(char *argument)
+void	check_ber(char *argument)
 {
-	int i;
+	int	i;
+
 	if (ft_strlen(argument) < 5)
 		print_error("The map must be ending by .ber\n");
 	i = 0;
@@ -41,7 +42,7 @@ void check_ber(char *argument)
 			if (find_ber(argument + i, ".ber"))
 			{
 				if (argument[ft_strlen(argument) - 5] != '/')
-					return;
+					return ;
 			}
 		}
 		i++;
@@ -49,7 +50,7 @@ void check_ber(char *argument)
 	print_error("The map must be ending by .ber\n");
 }
 
-void ft_check_length(t_data *data)
+void	ft_check_length(t_data *data)
 {
 	data->width = ft_strlen(data->map[0]);
 	data->height = 0;
@@ -64,10 +65,10 @@ void ft_check_length(t_data *data)
 	}
 }
 
-void ft_check_walls(t_data *data)
+void	ft_check_walls(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	data->height = 0;
 	i = 0;
