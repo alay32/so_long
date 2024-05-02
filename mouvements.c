@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:27:41 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/04/25 09:34:22 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:06:39 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,23 @@ void	load_images(t_data *data)
 	data->ground = mlx_xpm_file_to_image(data->mlx, "./textures/ground.xpm",
 			&width, &height);
 	if (!data->ground)
-		return ;
+		print_error("Ground a 3chiry makhdamax\n");
 	data->wall = mlx_xpm_file_to_image(data->mlx, "./textures/wall.xpm", &width,
 			&height);
 	if (!data->wall)
-		return ;
+		print_error("Wall makhadamaxi a khawa\n");
 	data->apple = mlx_xpm_file_to_image(data->mlx, "./textures/apple.xpm",
 			&width, &height);
 	if (!data->apple)
-		return ;
+		print_error("makaynaxi tofaha a tofaha\n");
 	data->player = mlx_xpm_file_to_image(data->mlx,
-			"./textures/ghost_down1.xpm", &width, &height);
+			"./textures/ghost_down1.xpm",
+			&width,
+			&height);
 	if (!data->player)
-		return ;
+		print_error("Faynowa had player\n");
 	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/portal.xpm",
 			&width, &height);
 	if (!data->exit)
-		return ;
+		print_error("Exit dosn't load\n");
 }
